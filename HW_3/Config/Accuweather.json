@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true
+  },
+  "Accuweather": {
+    "key" : "upOb6KHuTRbHpamiwRx5YmbjGVRKF7lK&q="
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

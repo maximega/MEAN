@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  h1 Accuweather text search results for #{title}
+  div
+    table.table.table-hover
+      thead
+        tr: th New York Weather Search Results:
+      tbody
+        each item in json
+          tr
+            td="Key : " + item.Key
+            td="Type : " + item.Type
+            td="Rank : " + item.Rank
+            td="Admin Area : " + item.AdministrativeArea.LocalizedName
+          tr
+            td="English Name : " + item.EnglishName
+            td="Primary Postal Code : " + item.PrimaryPostalCode
+            td="Continent : " + item.Region.LocalizedName
+            td="Country : " + item.Country.LocalizedName
+          tr
+            td="Time Zone Code : " +item.TimeZone.Code
+            td="Latitude : " +item.GeoPosition.Latitude
+            td="Longitude : " + item.GeoPosition.Longitude
+            td="Elevation (feet) : " + item.GeoPosition.Elevation.Imperial.Value + "ft"
+          tr
+          tr
+          tr
+          tr
+          tr
+          tr
+          tr
+          tr
+
+
+
+
+  //-
+    each item in json
+      each value, key in item
+        - if (typeof(value) === 'object'){
+          each val, key in value
+            p= "\t" + key + " : " + val
+        -}
+        p= key + " : " + value
+    //-
+      - if (typeof(value) === 'list'){
+        p= key
+      -}
+      - if (typeof(value) !== 'object'){
+        p= key + " : " + value
+      -}
+      - else {
+        - if (typeof(value) !== 'object'){
+        p= key + " : " + value
+        -}
+        - else {
+          - if (typeof(value) !== 'object'){
+          p= key + " : " + value
+          -}
+        -}
+      -}
