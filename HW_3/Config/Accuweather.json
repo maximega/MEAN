@@ -5,7 +5,7 @@
     "sourceMap": true
   },
   "Accuweather": {
-    "key" : "upOb6KHuTRbHpamiwRx5YmbjGVRKF7lK&q="
+    "key" : ""
   },
   "exclude": [
     "node_modules"
