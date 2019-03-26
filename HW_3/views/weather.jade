@@ -31,32 +31,3 @@ block content
           tr
           tr
           tr
-
-
-
-
-  //-
-    each item in json
-      each value, key in item
-        - if (typeof(value) === 'object'){
-          each val, key in value
-            p= "\t" + key + " : " + val
-        -}
-        p= key + " : " + value
-    //-
-      - if (typeof(value) === 'list'){
-        p= key
-      -}
-      - if (typeof(value) !== 'object'){
-        p= key + " : " + value
-      -}
-      - else {
-        - if (typeof(value) !== 'object'){
-        p= key + " : " + value
-        -}
-        - else {
-          - if (typeof(value) !== 'object'){
-          p= key + " : " + value
-          -}
-        -}
-      -}
