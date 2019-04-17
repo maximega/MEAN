@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="text" placeholder="Weather Search" [(ngModel)]="cityName" />
+  <button (click) = "getWeather(cityName)">Search</button>
+
+
+
+  <div *ngFor="let obj of weatherData">
+    <p>Key : {{obj.Rank}}</p>
+    <p>Name : {{obj.EnglishName}}</p>
+    <p>Country : {{obj.Country.EnglishName}}</p>
+
+  </div>
+</body>
+</html>

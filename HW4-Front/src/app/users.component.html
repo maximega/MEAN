@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="User Search" [(ngModel)]="userName" />
+<button (click) = "getUser(userName)">Search</button>
+<div *ngFor="let city of userData.favorite; let i = index">
+  <h3>{{city}}</h3>
+  <button (click) = "deleteCity(i)">Delete</button>
+</div>
+</body>
+</html>
