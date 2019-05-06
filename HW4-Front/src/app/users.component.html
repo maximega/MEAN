@@ -5,11 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<input type="text" placeholder="User Search" [(ngModel)]="userName" />
-<button (click) = "getUser(userName)">Search</button>
-<div *ngFor="let city of userData.favorite; let i = index">
+<button (click) = "getUser()">Get User Favorite</button>
+<div *ngFor="let city of userData.favorite;">
   <h3>{{city}}</h3>
-  <button (click) = "deleteCity(i)">Delete</button>
+  <button (click) = "sendDelete(city)">Delete</button>
 </div>
 </body>
 </html>

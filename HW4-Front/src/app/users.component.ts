@@ -8,23 +8,29 @@ import { AppService } from './app.service';
   providers: [AppService]
 })
 export class UsersComponent {
-  favorites = '';
+  cityName = '';
   userData = {favorite: []};
 
   constructor(private appService: AppService) {}
 
-  getUser(favorites : string){
+  getUser(){
 
     const __ = this;
 
-    this.appService.getUser(favorites)
+    this.appService.getUser()
       .subscribe(data => {
         data = JSON.parse(data._body);
         __.userData = data;
       })
   }
-  deleteCity(i : number){
-    this.userData.favorite.splice(i,1);
+
+  sendDelete(cityName : string){
+    const __ = this;
+    this.appService.sendDelete(cityName)
+      .subscribe(data => {
+        data = JSON.parse(data._body);
+        __.userData = data;
+      })
   }
 
 }

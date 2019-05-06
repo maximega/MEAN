@@ -7,7 +7,7 @@ import { UsersComponent} from './users.component';
 const routes: Routes = [
   {path: '', component: AppComponent},
   {path: 'search', component: SearchComponent},
-  {path: 'users', component: UsersComponent}
+  {path: 'user', component: UsersComponent}
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
