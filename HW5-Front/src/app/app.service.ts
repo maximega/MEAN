@@ -7,15 +7,15 @@ export class AppService {
   constructor(private http: Http) {}
 
   public getAllWeather(cityName : string): Observable<any> {
-    return this.http.get('http://localhost:3000/hw4/search/' + cityName)
+    return this.http.get('http://localhost:3000/hw5/search/' + cityName)
   }
 
   public getUser(): Observable<any> {
-    return this.http.get('http://localhost:3000/hw4/user/')
+    return this.http.get('http://localhost:3000/hw5/user/')
   }
 
   public sendDelete(cityName : string):  Observable<any> {
-    return this.http.get('http://localhost:3000/hw4/user/delete/' + cityName)
+    return this.http.get('http://localhost:3000/hw5/user/delete/' + cityName)
   }
 
 }

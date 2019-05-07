@@ -85,9 +85,9 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/hw4', weatherRouter);
-app.use('/hw4', userRouter);
-app.use('/hw4/auth', authRouter);
+app.use('/hw5/auth', authRouter);
+app.use('/hw5', userRouter);
+app.use('/hw5', weatherRouter);
 
 
 // catch 404 and forward to error handler
