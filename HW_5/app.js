@@ -7,6 +7,7 @@ var logger = require('morgan');
 var weatherRouter = require('./routes/weather');
 var userRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var indexRouter = require('./routes/index');
 
 let db = require('./mongo/mongo');
 db.connect( (err, client) => {
@@ -47,7 +48,6 @@ passport.use(new GoogleStrategy({
         });
     }
 ));
-
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -88,6 +88,7 @@ app.use(passport.session());
 app.use('/hw5/auth', authRouter);
 app.use('/hw5', userRouter);
 app.use('/hw5', weatherRouter);
+app.use('/hw5', indexRouter);
 
 
 // catch 404 and forward to error handler

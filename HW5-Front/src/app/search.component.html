@@ -5,16 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-  <input type="text" placeholder="Weather Search" [(ngModel)]="cityName" />
-  <button (click) = "getWeather(cityName)">Search</button>
+    <input type="text" placeholder="Weather Search" [(ngModel)]="cityName" />
+    <button (click) = "getWeather(cityName)">Search</button>
 
-
-
-  <div *ngFor="let obj of weatherData">
-    <p>Key : {{obj.Rank}}</p>
-    <p>Name : {{obj.EnglishName}}</p>
-    <p>Country : {{obj.Country.EnglishName}}</p>
-
-  </div>
+    <div *ngFor="let obj of weatherData">
+        <p *ngIf="obj.length == 1; else elseBlock">{{obj}}</p>
+        <ng-template #elseBlock>
+            <p>Key : {{obj.Rank}}</p>
+            <p>Name : {{obj.EnglishName}}</p>
+            <p>Country : {{obj.Country.EnglishName}}</p>
+        </ng-template>
+    </div>
 </body>
 </html>

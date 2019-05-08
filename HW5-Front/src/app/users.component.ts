@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AppService } from './app.service';
+import {CookieService} from "angular2-cookie/core";
 
 
 @Component({
@@ -7,30 +8,42 @@ import { AppService } from './app.service';
   templateUrl: './users.component.html',
   providers: [AppService]
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   cityName = '';
   userData = {favorite: []};
+  user = '';
 
-  constructor(private appService: AppService) {}
+    constructor(private appService: AppService, private _cookieService:CookieService) {
+        this.user = this._cookieService.get('key');
+        console.log(this.user);
+    }
 
-  getUser(){
+    getLogin(){
+        if (!this.user){
+            this.appService.getHomePage(this.user).subscribe();
+        }
+    }
+    getUser(){
 
     const __ = this;
 
-    this.appService.getUser()
+    this.appService.getUser(this.user)
       .subscribe(data => {
         data = JSON.parse(data._body);
         __.userData = data;
       })
-  }
+    }
 
-  sendDelete(cityName : string){
+    sendDelete(cityName : string){
     const __ = this;
-    this.appService.sendDelete(cityName)
+    this.appService.sendDelete(cityName, this.user)
       .subscribe(data => {
         data = JSON.parse(data._body);
         __.userData = data;
       })
-  }
+    }
+    ngOnInit() {
+        this.getLogin();
+    }
 
 }

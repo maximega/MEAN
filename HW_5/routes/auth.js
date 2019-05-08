@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const base = "http://localhost:4200/";
+if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('./scratch');
+}
 
 router.get('/google', passport.authenticate('google', { scope: [ 'email', 'profile' ]}));
 
@@ -8,30 +13,26 @@ router.get('/google/callback', function(req, res, next){
     passport.authenticate('google', function(err, user, info){
         if (err) return next(err);
         if (!user) {
-            res.redirect("http://localhost:4200/");
+            res.redirect(base);
         }
+        let userData = { uid: user };
 
-        var userData = { uid: user.user };
-
-        var tokenData = {
+        let tokenData = {
             user: userData
         };
 
-        var token = jwt.sign(tokenData,
+        let token = jwt.sign(tokenData,
             '--some-secret-here--');
-
-        res.cookie('_accessToken', token);
-        res.redirect("http://localhost:4200/search");
+        //localStorage.setItem('Id_token',token);
+        res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+        res.redirect(base + "search");
 
     })(req, res, next);
 });
 
 router.get('/logout', function(req, res, next){
     req.logout();
-    //if req.authenticated()
-    //req.login()
-    //remove from db
-    res.render(index, {user : req.user});
+    res.render(base);
 });
 
 module.exports = router;

@@ -6,7 +6,7 @@
 </head>
 <body>
 <button (click) = "getUser()">Get User Favorite</button>
-<div *ngFor="let city of userData.favorite;">
+<div *ngFor="let city of userData">
   <h3>{{city}}</h3>
   <button (click) = "sendDelete(city)">Delete</button>
 </div>
