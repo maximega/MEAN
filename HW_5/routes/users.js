@@ -1,6 +1,7 @@
 express = require('express');
 router = express.Router();
 let db = require('../mongo/mongo');
+const base = "http://localhost:4200/";
 
 
 router.get('/user', function(req, res, next) {
@@ -13,7 +14,7 @@ router.get('/user', function(req, res, next) {
 
     let token = jwt.sign(tokenData,
         '--some-secret-here--');
-    res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+    res.cookie('_accessToken', uid, { domain: base, path: '/user', httpOnly: true});
 
     //update objects with data for user when googleId == uid
     db.getDB().collection('users').find(
@@ -37,7 +38,7 @@ router.get('/user/delete/:cityName', function(req, res, next) {
 
     let token = jwt.sign(tokenData,
         '--some-secret-here--');
-    res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+    res.cookie('_accessToken', uid, { domain: base, path: '/user', httpOnly: true});
 
     //update objects with data for user when googleId == uid
     db.getDB().collection('users').updateOne(

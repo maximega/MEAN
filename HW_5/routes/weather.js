@@ -3,6 +3,7 @@ router = express.Router();
 const request = require('request');
 const Accuweather = require('../Config/Accuweather.json');
 let db = require('../mongo/mongo');
+const base = "http://localhost:4200/";
 
 /* GET home page. */
 router.get('/search/:place', function(req, res, next) {
@@ -25,7 +26,7 @@ router.get('/search/:place', function(req, res, next) {
 
         let token = jwt.sign(tokenData,
             '--some-secret-here--');
-        res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+        res.cookie('_accessToken', uid, { domain: base, path: '/search', httpOnly: true});
 
         let weather = response.body;
         if (weather[0] == undefined){

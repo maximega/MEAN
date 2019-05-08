@@ -24,7 +24,7 @@ router.get('/google/callback', function(req, res, next){
         let token = jwt.sign(tokenData,
             '--some-secret-here--');
         //localStorage.setItem('Id_token',token);
-        res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+        res.cookie('_accessToken', uid, { domain: base, path: '/search', httpOnly: true});
         res.redirect(base + "search");
 
     })(req, res, next);
