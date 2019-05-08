@@ -5,7 +5,16 @@ let db = require('../mongo/mongo');
 
 router.get('/user', function(req, res, next) {
     let uid = req.headers.uid;
-    uid = '106511058171512626817';
+    let userData = { uid: uid };
+
+    let tokenData = {
+        user: userData
+    };
+
+    let token = jwt.sign(tokenData,
+        '--some-secret-here--');
+    res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+
     //update objects with data for user when googleId == uid
     db.getDB().collection('users').find(
         {googleId: uid},
@@ -19,7 +28,17 @@ router.get('/user/delete/:cityName', function(req, res, next) {
     let cityName = req.params.cityName;
 
     let uid = req.headers.uid;
-    uid = '106511058171512626817';
+
+    let userData = { uid: uid };
+
+    let tokenData = {
+        user: userData
+    };
+
+    let token = jwt.sign(tokenData,
+        '--some-secret-here--');
+    res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+
     //update objects with data for user when googleId == uid
     db.getDB().collection('users').updateOne(
         {googleId: uid},

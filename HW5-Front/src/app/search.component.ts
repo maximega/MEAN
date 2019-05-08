@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit{
 
   constructor(private appService: AppService, private _cookieService:CookieService) {
     this.user = (this._cookieService.get('_accessToken'));
-    console.log(this.user);
   }
   getLogin(){
     if (this.user === undefined){

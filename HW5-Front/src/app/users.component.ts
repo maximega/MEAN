@@ -14,8 +14,7 @@ export class UsersComponent implements OnInit {
   user = '';
 
     constructor(private appService: AppService, private _cookieService:CookieService) {
-        this.user = this._cookieService.get('key');
-        console.log(this.user);
+        this.user = this._cookieService.get('_accessToken');
     }
 
     getLogin(){

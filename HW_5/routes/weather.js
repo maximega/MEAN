@@ -17,6 +17,16 @@ router.get('/search/:place', function(req, res, next) {
     request(api, { json: true }, (err, response, body) => {
         if (err) { return console.log(err); }
         let uid = req.headers.uid;
+        let userData = { uid: uid };
+
+        let tokenData = {
+            user: userData
+        };
+
+        let token = jwt.sign(tokenData,
+            '--some-secret-here--');
+        res.cookie('_accessToken', token, { domain: base, path: '/search', httpOnly: true});
+
         let weather = response.body;
         if (weather[0] == undefined){
             res.json();
